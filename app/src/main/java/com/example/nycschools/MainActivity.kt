@@ -1,5 +1,6 @@
 package com.example.nycschools
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,11 +8,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ccom.example.nycschools.db.SchoolDatabase
 import com.example.nycschools.adapters.MyAdapter
+import com.example.nycschools.api.NewsService
 import com.example.nycschools.api.RetrofitHelper
-import com.example.nycschools.api.SchoolService
-import com.example.nycschools.repository.SchoolRepository
+import com.example.nycschools.repository.NewsRepository
 import com.example.nycschools.viewmodels.MainViewModel
 import com.example.nycschools.viewmodels.MainViewModelFactory
 
@@ -30,18 +30,32 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        recyclerView = findViewById(R.id.list_of_school)
 
-        val schoolService = RetrofitHelper.getInstance().create(SchoolService::class.java)
-        val database = SchoolDatabase.getDatabase(this)
-        val repository = SchoolRepository(schoolService, database)
+//        val schoolService = RetrofitHelper.getInstance().create(SchoolService::class.java)
+//        val database = SchoolDatabase.getDatabase(this)
+//        val repository = SchoolRepository(schoolService, database)
 
-        mainViewModel = ViewModelProvider(this, MainViewModelFactory(repository))[MainViewModel::class.java]
-        mainViewModel.schools.observe(this) {
-            adapter = MyAdapter(this, it)
+        val newsService = RetrofitHelper.getInstance().create(NewsService::class.java)
+        val newsRepository = NewsRepository(newsService)
+
+        //initializing viewmodel
+        mainViewModel = ViewModelProvider(this, MainViewModelFactory(newsRepository))[MainViewModel::class.java]
+//        mainViewModel.schools.observe(this) {
+        mainViewModel.news.observe(this) {
+            Log.d("MAINACTIVITY, NEWS", it.articles.toString())
+            adapter = MyAdapter(this, it.articles)
+//            adapter = MyAdapter(this, it.articles[0].source.name)
+            recyclerView.adapter = adapter
             recyclerView.itemAnimator = DefaultItemAnimator()
             recyclerView.layoutManager = LinearLayoutManager(this)
-            recyclerView.adapter = adapter
             adapter.notifyDataSetChanged()
+
+            adapter.onItemClick = {
+                val intent = Intent(this, NewsActivity::class.java)
+                intent.putExtra("DESCRIPTION", it.description)
+                startActivity(intent)
+            }
         }
     }
 }
