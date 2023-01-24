@@ -34,7 +34,7 @@ class MyAdapter(private val context: Context, private val articles: List<Article
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val article = articles[position] //binding the data acc to the position
-        holder.sourceName.text = article.source.name
+//        holder.sourceName.text = article.source.name
         holder.sourceTitle.text = article.title
         Glide.with(context).load(article.urlToImage).into(holder.image)
         //we can add itemView onClick, if we want it to be clicked anywhere in the item

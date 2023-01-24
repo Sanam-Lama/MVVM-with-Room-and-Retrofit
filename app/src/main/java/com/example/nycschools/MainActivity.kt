@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,13 +37,14 @@ class MainActivity : AppCompatActivity() {
 //        val database = SchoolDatabase.getDatabase(this)
 //        val repository = SchoolRepository(schoolService, database)
 
-        val newsService = RetrofitHelper.getInstance().create(NewsService::class.java)
-        val newsRepository = NewsRepository(newsService)
+        //accessing repository
+        val newsRepository = (application as NewsApplication).newsRepository
 
         //initializing viewmodel
         mainViewModel = ViewModelProvider(this, MainViewModelFactory(newsRepository))[MainViewModel::class.java]
 //        mainViewModel.schools.observe(this) {
         mainViewModel.news.observe(this) {
+            Toast.makeText(this, it.articles.size.toString(), Toast.LENGTH_SHORT).show()
             Log.d("MAINACTIVITY, NEWS", it.articles.toString())
             adapter = MyAdapter(this, it.articles)
 //            adapter = MyAdapter(this, it.articles[0].source.name)

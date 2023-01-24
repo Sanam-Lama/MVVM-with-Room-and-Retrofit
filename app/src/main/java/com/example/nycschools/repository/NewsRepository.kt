@@ -1,11 +1,17 @@
 package com.example.nycschools.repository
 
+import android.content.Context
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.nycschools.api.NewsService
+import com.example.nycschools.db.NewsDatabase
 import com.example.nycschools.models.Article
 import com.example.nycschools.models.News
-import com.example.nycschools.models.Source
+import com.example.nycschools.utils.NetworkUtils
+
+//import com.example.nycschools.models.Source
 
 /**
  * If we are doing a network call then we add a parameter for that netwrok service and
@@ -16,7 +22,10 @@ import com.example.nycschools.models.Source
  * and the view models access these functions here and get the data
  */
 
-class NewsRepository(private val newsService: NewsService) {
+class NewsRepository(
+    private val newsService: NewsService,
+    private val newsDatabase: NewsDatabase,
+    private val context: Context) {
 
     /**this variable will hold the news data coming from news api
      * making this variable private so that the external classes cannot access or modify them
@@ -30,11 +39,27 @@ class NewsRepository(private val newsService: NewsService) {
         get() = newsLiveData
 
     //this is the function that viewmodel will call when they need data from the api
+    @RequiresApi(Build.VERSION_CODES.M)
     suspend fun getNews(country: String, page: Int) {
-        // assigning the result that we get from network call to a variable
-        val result = newsService.getNews(country, page)
-        if (result?.body() != null) {   //checking if result and the result.body() are null or not
-            newsLiveData.postValue(result.body())
+
+        if (NetworkUtils.isOnline(context)) {
+            // assigning the response to result variable that we get from network call
+            val result = newsService.getNews(country, page)
+            if (result?.body() != null) {   //checking if result and the result.body() are null or not
+
+                newsDatabase.newsDao().addArticles(result.body()!!.articles)    //adding response to the database
+                newsLiveData.postValue(result.body())   //adding response from api to livedata (mutableLiveData)
+            }
+        } else {
+            //access it from database
+            val news = newsDatabase.newsDao().getArticles()
+            val newsList = News(news, "", 1)
+            newsLiveData.postValue(newsList)
         }
+
+
+
+
+
     }
 }
