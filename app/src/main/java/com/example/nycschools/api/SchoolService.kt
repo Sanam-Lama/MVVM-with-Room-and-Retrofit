@@ -1,5 +1,7 @@
 package com.example.nycschools.api
 
+import com.example.nycschools.models.SchoolList
+import com.example.nycschools.models.SchoolListItem
 import retrofit2.Response
 import retrofit2.http.GET
 
@@ -14,5 +16,5 @@ import retrofit2.http.GET
 interface SchoolService {
 
     @GET("Education/2017-DOE-High-School-Directory/s3k6-pzi2.json")
-    suspend fun getSchools() : Response<String>
+    suspend fun getSchools() : Response<SchoolListItem>
 }

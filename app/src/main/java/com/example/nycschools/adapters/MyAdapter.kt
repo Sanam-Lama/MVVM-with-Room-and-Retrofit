@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.nycschools.NewsActivity
 import com.example.nycschools.R
 import com.example.nycschools.models.Article
+import com.example.nycschools.models.SchoolListItem
 import kotlinx.android.synthetic.main.item_view.view.*
 
 /**
@@ -21,8 +22,8 @@ import kotlinx.android.synthetic.main.item_view.view.*
  * help t display to the view
  */
 
-//class MyAdapter(val context: Context, val schools: String) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
-class MyAdapter(private val context: Context, private val articles: List<Article>) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+class MyAdapter(val context: Context, val schools: List<SchoolListItem>) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+//class MyAdapter(private val context: Context, private val articles: List<Article>) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
 
     var onItemClick : ((Article) -> Unit)? = null
 
@@ -33,12 +34,20 @@ class MyAdapter(private val context: Context, private val articles: List<Article
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val article = articles[position] //binding the data acc to the position
-        holder.sourceName.text = article.source.name
-        holder.sourceTitle.text = article.title
-        Glide.with(context).load(article.urlToImage).into(holder.image)
-        //we can add itemView onClick, if we want it to be clicked anywhere in the item
-        holder.itemView.setOnClickListener {  onItemClick?.invoke(article) }
+        val school = schools[position]
+        holder.sourceName.text = school.school_name
+
+
+
+
+
+
+//        val article = articles[position] //binding the data acc to the position
+//        holder.sourceName.text = article.source.name
+//        holder.sourceTitle.text = article.title
+//        Glide.with(context).load(article.urlToImage).into(holder.image)
+//        //we can add itemView onClick, if we want it to be clicked anywhere in the item
+//        holder.itemView.setOnClickListener {  onItemClick?.invoke(article) }
 
         //below we are speicfying that we must click on the image to redirect to other screen
 //        holder.image.setOnClickListener {
@@ -48,7 +57,8 @@ class MyAdapter(private val context: Context, private val articles: List<Article
     }
 
     override fun getItemCount(): Int {
-        return articles.size
+//        return articles.size
+        return schools.size
     }
 
     //storing the references of views

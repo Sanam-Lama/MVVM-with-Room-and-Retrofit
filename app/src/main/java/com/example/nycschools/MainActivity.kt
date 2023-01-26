@@ -41,22 +41,38 @@ class MainActivity : AppCompatActivity() {
 
         //initializing viewmodel
         mainViewModel = ViewModelProvider(this, MainViewModelFactory(newsRepository))[MainViewModel::class.java]
-//        mainViewModel.schools.observe(this) {
-        mainViewModel.news.observe(this) {
-            Log.d("MAINACTIVITY, NEWS", it.articles.toString())
-            adapter = MyAdapter(this, it.articles)
-//            adapter = MyAdapter(this, it.articles[0].source.name)
+        mainViewModel.schools.observe(this) {
+//            Log.d("MAINACTIVITY, SCHOOLS", it.schools.toString())
+//            adapter = MyAdapter(this, it)
             recyclerView.adapter = adapter
             recyclerView.itemAnimator = DefaultItemAnimator()
             recyclerView.layoutManager = LinearLayoutManager(this)
             adapter.notifyDataSetChanged()
-
-            adapter.onItemClick = {
-                val intent = Intent(this, NewsActivity::class.java)
-                intent.putExtra("DESCRIPTION", it.description)
-                startActivity(intent)
-            }
         }
+
+
+
+
+
+
+
+
+
+//        mainViewModel.news.observe(this) {
+//            Log.d("MAINACTIVITY, NEWS", it.articles.toString())
+//            adapter = MyAdapter(this, it.articles)
+////            adapter = MyAdapter(this, it.articles[0].source.name)
+//            recyclerView.adapter = adapter
+//            recyclerView.itemAnimator = DefaultItemAnimator()
+//            recyclerView.layoutManager = LinearLayoutManager(this)
+//            adapter.notifyDataSetChanged()
+//
+//            adapter.onItemClick = {
+//                val intent = Intent(this, NewsActivity::class.java)
+//                intent.putExtra("DESCRIPTION", it.description)
+//                startActivity(intent)
+//            }
+//        }
     }
 }
 

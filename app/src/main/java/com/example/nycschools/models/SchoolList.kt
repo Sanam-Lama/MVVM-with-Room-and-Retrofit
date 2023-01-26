@@ -8,9 +8,15 @@ import androidx.room.PrimaryKey
  * I have added only the necessary variable i.e. school_name
  */
 
+//@Entity(tableName = "schools")
+//data class SchoolList(
+//    @PrimaryKey(autoGenerate = true)
+//    var schoolId: Int? = null,
+//    val school_name: String
+//)
+
 @Entity(tableName = "schools")
-data class SchoolList(
+data class SchoolList (
     @PrimaryKey(autoGenerate = true)
     var schoolId: Int? = null,
-    val school_name: String
-)
+    val schools: List<SchoolListItem>)

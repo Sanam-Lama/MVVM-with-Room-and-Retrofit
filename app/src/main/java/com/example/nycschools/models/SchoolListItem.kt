@@ -1,6 +1,12 @@
 package com.example.nycschools.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+//@Entity(tableName = "schools")
 data class SchoolListItem(
+//    @PrimaryKey(autoGenerate = true)
+//    val schoolId: Int?,
     val academicopportunities1: String,
     val academicopportunities2: String,
     val academicopportunities3: String,
@@ -297,7 +303,7 @@ data class SchoolListItem(
     val school_10th_seats: String,
     val school_accessibility_description: String,
     val school_email: String,
-    val school_name: String,
+    val school_name: String?,
     val school_sports: String,
     val seats101: String,
     val seats1010: String,
