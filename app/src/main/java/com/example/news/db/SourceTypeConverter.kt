@@ -1,7 +1,7 @@
-package com.example.nycschools.db
+package com.example.news.db
 
 import androidx.room.TypeConverter
-import com.example.nycschools.models.Source
+import com.example.news.models.Source
 import org.json.JSONObject
 
 /**

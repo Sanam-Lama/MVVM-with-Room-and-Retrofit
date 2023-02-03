@@ -1,8 +1,8 @@
-package com.example.nycschools.db
+package com.example.news.db
 
 import android.content.Context
 import androidx.room.*
-import com.example.nycschools.models.Article
+import com.example.news.models.Article
 
 @Database(entities = [Article::class], version = 1)
 @TypeConverters(SourceTypeConverter::class)

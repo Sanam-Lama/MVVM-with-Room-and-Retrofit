@@ -1,4 +1,4 @@
-package com.example.nycschools
+package com.example.news
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,12 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.nycschools.adapters.MyAdapter
-import com.example.nycschools.api.NewsService
-import com.example.nycschools.api.RetrofitHelper
-import com.example.nycschools.repository.NewsRepository
-import com.example.nycschools.viewmodels.MainViewModel
-import com.example.nycschools.viewmodels.MainViewModelFactory
+import com.example.news.adapters.MyAdapter
+import com.example.news.viewmodels.MainViewModel
+import com.example.news.viewmodels.MainViewModelFactory
 
 /**
  * MainActivity is the view in this whole project and holds the observers that will update the

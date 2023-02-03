@@ -1,12 +1,11 @@
-package com.example.nycschools.viewmodels
+package com.example.news.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.nycschools.models.Article
-import com.example.nycschools.models.News
+import com.example.news.models.News
 //import com.example.nycschools.models.Source
-import com.example.nycschools.repository.NewsRepository
+import com.example.news.repository.NewsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

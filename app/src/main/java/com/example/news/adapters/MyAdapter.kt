@@ -1,18 +1,15 @@
-package com.example.nycschools.adapters
+package com.example.news.adapters
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.nycschools.NewsActivity
-import com.example.nycschools.R
-import com.example.nycschools.models.Article
+import com.example.news.R
+import com.example.news.models.Article
 import kotlinx.android.synthetic.main.item_view.view.*
 
 /**

@@ -1,9 +1,9 @@
-package com.example.nycschools.db
+package com.example.news.db
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.nycschools.models.Article
+import com.example.news.models.Article
 
 @Dao
 interface NewsDao {

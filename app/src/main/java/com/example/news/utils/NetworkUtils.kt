@@ -1,4 +1,4 @@
-package com.example.nycschools.utils
+package com.example.news.utils
 
 import android.content.Context
 import android.net.ConnectivityManager

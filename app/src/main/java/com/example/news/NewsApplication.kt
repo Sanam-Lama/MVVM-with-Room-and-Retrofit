@@ -1,10 +1,10 @@
-package com.example.nycschools
+package com.example.news
 
 import android.app.Application
-import com.example.nycschools.api.NewsService
-import com.example.nycschools.api.RetrofitHelper
-import com.example.nycschools.db.NewsDatabase
-import com.example.nycschools.repository.NewsRepository
+import com.example.news.api.NewsService
+import com.example.news.api.RetrofitHelper
+import com.example.news.db.NewsDatabase
+import com.example.news.repository.NewsRepository
 
 /**
  * This class is created to create a reference of repository so that all other viewmodels can

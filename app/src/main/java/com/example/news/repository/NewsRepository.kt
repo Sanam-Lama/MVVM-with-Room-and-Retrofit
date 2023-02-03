@@ -1,15 +1,14 @@
-package com.example.nycschools.repository
+package com.example.news.repository
 
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.nycschools.api.NewsService
-import com.example.nycschools.db.NewsDatabase
-import com.example.nycschools.models.Article
-import com.example.nycschools.models.News
-import com.example.nycschools.utils.NetworkUtils
+import com.example.news.api.NewsService
+import com.example.news.db.NewsDatabase
+import com.example.news.models.News
+import com.example.news.utils.NetworkUtils
 
 //import com.example.nycschools.models.Source
 

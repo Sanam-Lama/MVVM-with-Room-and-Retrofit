@@ -1,4 +1,4 @@
-package com.example.nycschools
+package com.example.news
 
 import android.os.Bundle
 import android.widget.TextView

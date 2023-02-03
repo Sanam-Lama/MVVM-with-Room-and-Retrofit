@@ -1,8 +1,8 @@
-package com.example.nycschools.viewmodels
+package com.example.news.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.nycschools.repository.NewsRepository
+import com.example.news.repository.NewsRepository
 
 /**
  * Whenever we have a parameterized ViewModel, we need to create a ViewModelFactory

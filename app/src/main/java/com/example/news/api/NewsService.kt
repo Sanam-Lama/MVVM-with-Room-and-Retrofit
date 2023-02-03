@@ -1,7 +1,6 @@
-package com.example.nycschools.api
+package com.example.news.api
 
-import com.example.nycschools.models.Article
-import com.example.nycschools.models.News
+import com.example.news.models.News
 //import com.example.nycschools.models.Source
 import retrofit2.Response
 import retrofit2.http.GET
