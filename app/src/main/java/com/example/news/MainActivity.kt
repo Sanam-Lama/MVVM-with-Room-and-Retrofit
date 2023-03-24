@@ -30,10 +30,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         recyclerView = findViewById(R.id.list_of_school)
 
-//        val schoolService = RetrofitHelper.getInstance().create(SchoolService::class.java)
-//        val database = SchoolDatabase.getDatabase(this)
-//        val repository = SchoolRepository(schoolService, database)
-
         //accessing repository
         val newsRepository = (application as NewsApplication).newsRepository
 

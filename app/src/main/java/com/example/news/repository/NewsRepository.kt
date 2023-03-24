@@ -55,10 +55,17 @@ class NewsRepository(
             val newsList = News(news, "", 1)
             newsLiveData.postValue(newsList)
         }
+    }
 
-
-
-
-
+    /**
+     * will run the api in background and will save the data in our database
+     */
+    suspend fun getNewsInBackground(country: String) {
+        //creating randomPageNumber from where we can fetch the news
+        val randomPageNumber = (Math.random() * 10).toInt()
+        val result = newsService.getNews(country, randomPageNumber)
+        if (result?.body() != null) {
+            newsDatabase.newsDao().addArticles(result.body()!!.articles)
+        }
     }
 }

@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.news.R
 import com.example.news.models.Article
-import kotlinx.android.synthetic.main.item_view.view.*
 
 /**
  * an adapter class is a necessary class for us to bind our data to UI while displaying the
