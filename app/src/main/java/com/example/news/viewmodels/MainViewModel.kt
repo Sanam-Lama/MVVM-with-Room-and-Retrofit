@@ -15,12 +15,11 @@ import kotlinx.coroutines.launch
  * get the observed data and is sent to the view.
  */
 
-//class MainViewModel(private val repository: SchoolRepository) : ViewModel(){
 class MainViewModel(private val repository: NewsRepository) : ViewModel(){
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.getNews("us", 1)
+            repository.getNews(1)
         }
     }
 
@@ -29,16 +28,5 @@ class MainViewModel(private val repository: NewsRepository) : ViewModel(){
     val news : LiveData<News>
     get() = repository._newsLiveData
 
-
-    /**
-     *  init {
-    viewModelScope.launch(Dispatchers.IO) {
-    repository.getSchools()
-    }
-    }
-
-    val schools : LiveData<String>
-    get() = repository.schools
-     */
 
 }

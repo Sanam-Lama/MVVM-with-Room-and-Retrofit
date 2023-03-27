@@ -64,4 +64,8 @@ dependencies {
 
     implementation "androidx.work:work-runtime-ktx:2.7.1"
 
+    def paging_version = "3.1.1"
+    implementation("androidx.paging:paging-runtime:$paging_version")
+
+
 }

@@ -7,7 +7,7 @@ import com.example.news.repository.NewsRepository
 /**
  * Whenever we have a parameterized ViewModel, we need to create a ViewModelFactory
  */
-//class MainViewModelFactory(private val repository: SchoolRepository) : ViewModelProvider.Factory {
+
 class MainViewModelFactory(private val repository: NewsRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return MainViewModel(repository) as T

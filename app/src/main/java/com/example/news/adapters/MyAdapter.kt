@@ -17,7 +17,6 @@ import com.example.news.models.Article
  * help t display to the view
  */
 
-//class MyAdapter(val context: Context, val schools: String) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
 class MyAdapter(private val context: Context, private val articles: List<Article>) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
 
     var onItemClick : ((Article) -> Unit)? = null
@@ -32,7 +31,7 @@ class MyAdapter(private val context: Context, private val articles: List<Article
         val article = articles[position] //binding the data acc to the position
         holder.sourceName.text = article.source?.name
         holder.sourceTitle.text = article.title
-        Glide.with(context).load(article.urlToImage).into(holder.image)
+//        Glide.with(context).load(article.urlToImage).into(holder.image)
         //we can add itemView onClick, if we want it to be clicked anywhere in the item
         holder.itemView.setOnClickListener {  onItemClick?.invoke(article) }
 
@@ -51,7 +50,7 @@ class MyAdapter(private val context: Context, private val articles: List<Article
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var sourceName = itemView.findViewById<TextView>(R.id.name_of_source)
         var sourceTitle = itemView.findViewById<TextView>(R.id.title)
-        var image = itemView.findViewById<ImageView>(R.id.imageView)
+//        var image = itemView.findViewById<ImageView>(R.id.imageView)
     }
 
 }

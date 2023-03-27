@@ -2,6 +2,7 @@ package com.example.news.repository
 
 import android.content.Context
 import android.os.Build
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -39,16 +40,20 @@ class NewsRepository(
 
     //this is the function that viewmodel will call when they need data from the api
     @RequiresApi(Build.VERSION_CODES.M)
-    suspend fun getNews(country: String, page: Int) {
+//    suspend fun getNews(country: String, page: Int) {
+    suspend fun getNews(page: Int) {
 
         if (NetworkUtils.isOnline(context)) {
             // assigning the response to result variable that we get from network call
-            val result = newsService.getNews(country, page)
+            val result = newsService.getNews("us", page)
             if (result?.body() != null) {   //checking if result and the result.body() are null or not
 
                 newsDatabase.newsDao().addArticles(result.body()!!.articles)    //adding response to the database
                 newsLiveData.postValue(result.body())   //adding response from api to livedata (mutableLiveData)
             }
+//            else if (result.errorBody() != null) {
+//                Toast.makeText(context, "Error occurred!! try again later!!", Toast.LENGTH_SHORT).show()
+//            }
         } else {
             //access it from database
             val news = newsDatabase.newsDao().getArticles()

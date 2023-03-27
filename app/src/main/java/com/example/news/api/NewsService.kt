@@ -1,5 +1,6 @@
 package com.example.news.api
 
+import com.example.news.models.Article
 import com.example.news.models.News
 //import com.example.nycschools.models.Source
 import retrofit2.Response
@@ -18,4 +19,5 @@ interface NewsService {
 
     @GET("top-headlines?apiKey=$API_KEY")
     suspend fun getNews(@Query("country") country: String, @Query("page") page: Int) : Response<News>
+//    suspend fun getNews(@Query("page") page: Int) : Response<News>
 }
